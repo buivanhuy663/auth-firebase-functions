@@ -2,7 +2,7 @@
 import { ParamsDictionary } from "express-serve-static-core";
 import { Request } from "firebase-functions/v1";
 import { BaseFunction } from "../base/base_function";
-import { ResponseWraper } from "../base/response_wrapper";
+import { ResponseWrapper } from "../base/response_wrapper";
 import { ChangePasswordModel } from "../models/change_password_model";
 import { getAuthUseCase } from "../use_case/auth_use_case/get_auth_use_case";
 
@@ -10,8 +10,8 @@ import { updatePasswordUseCase } from "../use_case/auth_use_case/update_password
 import { Validation } from "../utilities/validation";
 
 class ChangePasswordFunction
-    implements BaseFunction<ResponseWraper<undefined>> {
-    async onRequest(request: Request<ParamsDictionary>): Promise<ResponseWraper<undefined>> {
+    implements BaseFunction<ResponseWrapper<undefined>> {
+    async onRequest(request: Request<ParamsDictionary>): Promise<ResponseWrapper<undefined>> {
         try {
             const email = request.body["email"]
             const oldPassword = request.body["oldPassword"]
@@ -20,15 +20,15 @@ class ChangePasswordFunction
             const data = await getAuthUseCase.run(email);
             if (data != undefined) {
                 if (oldPassword == data.password) {
-                    if (Validation.isPassowrd(newPassword)) {
+                    if (Validation.isPassword(newPassword)) {
                         await updatePasswordUseCase.run(new ChangePasswordModel({ email: email, password: newPassword }))
-                        return new ResponseWraper({
+                        return new ResponseWrapper({
                             status: 200,
                             message: "Change password success",
                             data: undefined
                         })
                     } else {
-                        return new ResponseWraper({
+                        return new ResponseWrapper({
                             status: 400,
                             message: "New password is invalid",
                             data: undefined
@@ -38,7 +38,7 @@ class ChangePasswordFunction
             }
             throw Error()
         } catch (e) {
-            return new ResponseWraper({
+            return new ResponseWrapper({
                 status: 400,
                 message: "Change password fail",
                 data: undefined

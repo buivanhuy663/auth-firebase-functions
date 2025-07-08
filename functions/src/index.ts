@@ -14,7 +14,7 @@ import { setGlobalOptions } from "firebase-functions/v2"
 import { changePasswordFunction } from "./functions/change_password_function"
 import { deleteDataAccountFunction } from "./functions/delete_data_account"
 import { loginFunction } from "./functions/login_function"
-import { regiterFunction } from "./functions/register_function"
+import { registerFunction } from "./functions/register_function"
 import { verifyAuthCodeFunction } from "./functions/verify_auth_code_function"
 
 // Set the maximum instances to 10 for all functions
@@ -24,7 +24,7 @@ admin.initializeApp()
 // https://firebase.google.com/docs/functions/typescript
 
 export const register = onRequest(async (request, response) => {
-    const result = await regiterFunction.onRequest(request)
+    const result = await registerFunction.onRequest(request)
     response.status(result.status).send(result.toJson())
 })
 

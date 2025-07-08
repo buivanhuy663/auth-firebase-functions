@@ -31,7 +31,7 @@ export async function createSendEmail(emailReceive: string, authCode: string): P
             var mainOptions = { // thiết lập đối tượng, nội dung gửi mail
                 from: email,
                 to: emailReceive,
-                subject: "Regiter code",
+                subject: "Register code",
                 html: content //Nội dung html mình đã tạo trên kia :))
             }
 

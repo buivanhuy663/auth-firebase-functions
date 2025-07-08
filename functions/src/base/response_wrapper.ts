@@ -1,8 +1,8 @@
-import {BaseResponse} from "./base_response";
+import { BaseResponse } from "./base_response";
 
-export class ResponseWraper<M extends BaseResponse | undefined> implements BaseResponse {
+export class ResponseWrapper<M extends BaseResponse | undefined> implements BaseResponse {
 
-    constructor({status, message, data}: {status?: number, message?: string, data?: M}) {
+    constructor({ status, message, data }: { status?: number, message?: string, data?: M }) {
         this.status = status;
         this.message = message;
         this.data = data;

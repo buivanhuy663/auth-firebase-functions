@@ -5,7 +5,7 @@ export class Validation {
         return expression.test(email);
     }
 
-    static isPassowrd(password: string): boolean {
+    static isPassword(password: string): boolean {
         return password.length >= 8;
     }
 }

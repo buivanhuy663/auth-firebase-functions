@@ -4,7 +4,7 @@ import { FieldValue } from "firebase-admin/firestore";
 import { Request } from "firebase-functions/v1";
 import { StatusCodes } from "http-status-codes";
 import { BaseFunction } from "../base/base_function";
-import { ResponseWraper as ResponseWrapper } from "../base/response_wrapper";
+import { ResponseWrapper as ResponseWrapper } from "../base/response_wrapper";
 import { createSendEmail } from "../helper/email/email_helper";
 import { firestoreHelper } from "../helper/firestore_helper";
 import { emailIsExistUseCase } from "../use_case/auth_use_case/email_is_exist_use_case";
@@ -28,7 +28,7 @@ class RegisterFunction
                 })
             }
 
-            if (!Validation.isPassowrd(password)) {
+            if (!Validation.isPassword(password)) {
                 return new ResponseWrapper({
                     status: StatusCodes.OK,
                     message: 'Password is invalid',
@@ -60,11 +60,11 @@ class RegisterFunction
         catch (err: any) {
             return new ResponseWrapper({
                 status: StatusCodes.BAD_REQUEST,
-                message: 'Regiter is error',
+                message: 'RegiSter is error',
             })
         }
     }
 }
 
-export const regiterFunction = new RegisterFunction();
+export const registerFunction = new RegisterFunction();
 
