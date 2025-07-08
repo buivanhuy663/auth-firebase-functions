@@ -1,13 +1,13 @@
 
-import {ParamsDictionary} from "express-serve-static-core";
-import {Request} from "firebase-functions/v1";
-import {BaseFunction} from "../base/base_function";
-import {ResponseWraper} from "../base/response_wraper";
-import {ChangePasswordModel} from "../models/change_password_model";
-import {getAuthUseCase} from "../use_case/auth_use_case/get_auth_use_case";
+import { ParamsDictionary } from "express-serve-static-core";
+import { Request } from "firebase-functions/v1";
+import { BaseFunction } from "../base/base_function";
+import { ResponseWraper } from "../base/response_wrapper";
+import { ChangePasswordModel } from "../models/change_password_model";
+import { getAuthUseCase } from "../use_case/auth_use_case/get_auth_use_case";
 
-import {updatePasswordUseCase} from "../use_case/auth_use_case/update_password_use_case";
-import {Validation} from "../utilities/validation";
+import { updatePasswordUseCase } from "../use_case/auth_use_case/update_password_use_case";
+import { Validation } from "../utilities/validation";
 
 class ChangePasswordFunction
     implements BaseFunction<ResponseWraper<undefined>> {
@@ -21,7 +21,7 @@ class ChangePasswordFunction
             if (data != undefined) {
                 if (oldPassword == data.password) {
                     if (Validation.isPassowrd(newPassword)) {
-                        await updatePasswordUseCase.run(new ChangePasswordModel({email: email, password: newPassword}))
+                        await updatePasswordUseCase.run(new ChangePasswordModel({ email: email, password: newPassword }))
                         return new ResponseWraper({
                             status: 200,
                             message: "Change password success",

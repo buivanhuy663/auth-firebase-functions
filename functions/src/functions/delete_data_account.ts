@@ -2,7 +2,7 @@
 import { ParamsDictionary } from "express-serve-static-core";
 import { Request } from "firebase-functions/v1";
 import { BaseFunction } from "../base/base_function";
-import { ResponseWraper } from "../base/response_wraper";
+import { ResponseWraper } from "../base/response_wrapper";
 import { LoginResponse } from "../models/auth/login_response";
 import { deleteDataAccountUseCase } from "../use_case/auth_use_case/detele_data_account_use_case";
 

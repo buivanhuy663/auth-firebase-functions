@@ -1,11 +1,11 @@
 
-import {ParamsDictionary} from "express-serve-static-core";
+import { ParamsDictionary } from "express-serve-static-core";
 import * as admin from "firebase-admin";
-import {Request} from "firebase-functions/v1";
-import {BaseFunction} from "../base/base_function";
-import {ResponseWraper} from "../base/response_wraper";
-import {LoginResponse} from "../models/auth/login_response";
-import {getAuthUseCase} from "../use_case/auth_use_case/get_auth_use_case";
+import { Request } from "firebase-functions/v1";
+import { BaseFunction } from "../base/base_function";
+import { ResponseWraper } from "../base/response_wrapper";
+import { LoginResponse } from "../models/auth/login_response";
+import { getAuthUseCase } from "../use_case/auth_use_case/get_auth_use_case";
 
 class LoginFunction
     implements BaseFunction<ResponseWraper<LoginResponse | undefined>> {
