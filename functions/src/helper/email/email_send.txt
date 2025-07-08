@@ -1,0 +1,7 @@
+<div style="padding: 10px; background-color: #003375">
+    <div style="padding: 10px; background-color: white;">
+        <h4 style="color: black"> Mã các thực cho địa chỉ email ::email:: là</h4>
+        <h1 style="color: black">::auth-code::</span>
+        <h4 style="color: black"> Mã các thực có thời hạn trong 5 phút.</h4>
+    </div>
+</div>
