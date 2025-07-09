@@ -4,7 +4,7 @@ import { Request } from "firebase-functions/v1";
 import { BaseFunction } from "../base/base_function";
 import { ResponseWrapper } from "../base/response_wrapper";
 import { LoginResponse } from "../models/auth/login_response";
-import { deleteDataAccountUseCase } from "../use_case/auth_use_case/detele_data_account_use_case";
+import { deleteDataAccountUseCase } from "../use_case/detele_data_account_use_case";
 
 class DeleteDataAccount
     implements BaseFunction<ResponseWrapper<LoginResponse | undefined>> {

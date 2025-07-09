@@ -1,7 +1,7 @@
-import {PromiseUseCase} from "../../base/use_case/promise_use_case"
-import {firestoreHelper} from "../../helper/firestore_helper"
-import {Account} from "../../models/account"
-import {ConstantKey} from "../../utilities/constant_key"
+import { PromiseUseCase } from "../base/use_case/promise_use_case"
+import { firestoreHelper } from "../helper/firestore_helper"
+import { Account } from "../models/account"
+import { ConstantKey } from "../utilities/constant_key"
 
 class SetAccountToFirestoreUseCase implements PromiseUseCase<Account, void> {
     async run(input: Account): Promise<void> {

@@ -5,9 +5,9 @@ import { BaseFunction } from "../base/base_function";
 import { ResponseWrapper } from "../base/response_wrapper";
 import { VerifyResponse } from "../models/auth/verify_auth_response";
 import { AuthCodeInfo } from "../models/auth_code_info";
-import { createNewAccountUseCase } from "../use_case/auth_use_case/create_new_account_use_case";
-import { getAuthCodeUseCase } from "../use_case/auth_use_case/get_auth_code_use_case";
-import { resetAuthCodeUseCase } from "../use_case/auth_use_case/reset_auth_code_use_case";
+import { createNewAccountUseCase } from "../use_case/create_new_account_use_case";
+import { getAuthCodeUseCase } from "../use_case/get_auth_code_use_case";
+import { resetAuthCodeUseCase } from "../use_case/reset_auth_code_use_case";
 import { timestampToNow } from "../utilities/timestamp_to_now";
 
 

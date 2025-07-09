@@ -1,12 +1,12 @@
-import {PromiseUseCase} from "../../base/use_case/promise_use_case";
-import {firestoreHelper} from "../../helper/firestore_helper";
-import {Account} from "../../models/account";
-import {AccountAuth} from "../../models/account_auth";
-import {ConstantKey} from "../../utilities/constant_key";
+import { PromiseUseCase } from "../base/use_case/promise_use_case";
+import { firestoreHelper } from "../helper/firestore_helper";
+import { Account } from "../models/account";
+import { AccountAuth } from "../models/account_auth";
+import { ConstantKey } from "../utilities/constant_key";
 
 class CreateNewAccountUseCase implements
-    PromiseUseCase<{email: string, password: string}, string | null> {
-    async run(input: {email: string; password: string;}): Promise<string | null> {
+    PromiseUseCase<{ email: string, password: string }, string | null> {
+    async run(input: { email: string; password: string; }): Promise<string | null> {
         try {
             const newDoc = await firestoreHelper.getNewDoc(ConstantKey.accountsInfos)
             await firestoreHelper.setDocument(
@@ -18,7 +18,7 @@ class CreateNewAccountUseCase implements
                     password: input.password
                 }).toJson(),
             )
-            await newDoc.set(new Account({id: newDoc.id, email: input.email}).toJson())
+            await newDoc.set(new Account({ id: newDoc.id, email: input.email }).toJson())
             return newDoc.id;
         } catch (e) {
             return null;

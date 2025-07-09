@@ -7,7 +7,7 @@ import { BaseFunction } from "../base/base_function";
 import { ResponseWrapper as ResponseWrapper } from "../base/response_wrapper";
 import { createSendEmail } from "../helper/email/email_helper";
 import { firestoreHelper } from "../helper/firestore_helper";
-import { emailIsExistUseCase } from "../use_case/auth_use_case/email_is_exist_use_case";
+import { emailIsExistUseCase } from "../use_case/email_is_exist_use_case";
 import { ConstantKey } from "../utilities/constant_key";
 import { Validation } from "../utilities/validation";
 

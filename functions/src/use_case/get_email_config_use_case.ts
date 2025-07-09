@@ -1,7 +1,7 @@
 import { DocumentData } from "firebase-admin/firestore"
-import { PromiseOutputUseCase } from "../../base/use_case/promise_output_use_case"
-import { firestoreHelper } from "../../helper/firestore_helper"
-import { ConstantKey } from "../../utilities/constant_key"
+import { PromiseOutputUseCase } from "../base/use_case/promise_output_use_case"
+import { firestoreHelper } from "../helper/firestore_helper"
+import { ConstantKey } from "../utilities/constant_key"
 
 class GetEmailConfigUseCase implements PromiseOutputUseCase<DocumentData | undefined> {
     async run(): Promise<DocumentData | undefined> {

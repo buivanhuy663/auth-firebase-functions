@@ -5,7 +5,7 @@ import { Request } from "firebase-functions/v1";
 import { BaseFunction } from "../base/base_function";
 import { ResponseWrapper } from "../base/response_wrapper";
 import { LoginResponse } from "../models/auth/login_response";
-import { getAuthUseCase } from "../use_case/auth_use_case/get_auth_use_case";
+import { getAuthUseCase } from "../use_case/get_auth_use_case";
 
 class LoginFunction
     implements BaseFunction<ResponseWrapper<LoginResponse | undefined>> {

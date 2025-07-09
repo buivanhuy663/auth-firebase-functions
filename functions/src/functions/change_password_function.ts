@@ -4,9 +4,9 @@ import { Request } from "firebase-functions/v1";
 import { BaseFunction } from "../base/base_function";
 import { ResponseWrapper } from "../base/response_wrapper";
 import { ChangePasswordModel } from "../models/change_password_model";
-import { getAuthUseCase } from "../use_case/auth_use_case/get_auth_use_case";
+import { getAuthUseCase } from "../use_case/get_auth_use_case";
 
-import { updatePasswordUseCase } from "../use_case/auth_use_case/update_password_use_case";
+import { updatePasswordUseCase } from "../use_case/update_password_use_case";
 import { Validation } from "../utilities/validation";
 
 class ChangePasswordFunction
