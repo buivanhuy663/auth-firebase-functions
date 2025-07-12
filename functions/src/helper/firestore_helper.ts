@@ -29,7 +29,7 @@ class FirestoreHelper {
         return await admin.firestore().collection(collection).add(value)
     }
 
-    getNewDoc = async (collection: string): Promise<DocumentReference<DocumentData>> => {
+    createNewDoc = async (collection: string): Promise<DocumentReference<DocumentData>> => {
         return admin.firestore().collection(collection).doc()
     }
 

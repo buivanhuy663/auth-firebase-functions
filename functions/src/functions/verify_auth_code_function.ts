@@ -4,7 +4,6 @@ import { StatusCodes } from "http-status-codes";
 import { BaseFunction } from "../base/base_function";
 import { ResponseWrapper } from "../base/response_wrapper";
 import { VerifyResponse } from "../models/auth/verify_auth_response";
-import { AuthCodeInfo } from "../models/auth_code_info";
 import { createNewAccountUseCase } from "../use_case/create_new_account_use_case";
 import { getAuthCodeUseCase } from "../use_case/get_auth_code_use_case";
 import { resetAuthCodeUseCase } from "../use_case/reset_auth_code_use_case";
@@ -17,10 +16,9 @@ class VerifyAuthCodeFunction implements BaseFunction<ResponseWrapper<VerifyRespo
             const email = request.body.email
             const authCode = request.body.authCode
 
-            const data = await getAuthCodeUseCase.run(email)
+            const authCodeInfo = await getAuthCodeUseCase.run(email)
 
-            if (data != undefined) {
-                const authCodeInfo = AuthCodeInfo.fromJson(data)
+            if (authCodeInfo != undefined) {
                 if (timestampToNow(authCodeInfo.timestamp) < 60 * 5) {
                     if (authCode == authCodeInfo.authCode) {
                         resetAuthCodeUseCase.run(email)
@@ -32,32 +30,33 @@ class VerifyAuthCodeFunction implements BaseFunction<ResponseWrapper<VerifyRespo
                                 data: new VerifyResponse({
                                     id: accountId,
                                     email: email,
-
                                 })
                             })
                         }
                     } else {
                         return new ResponseWrapper({
                             status: StatusCodes.BAD_REQUEST,
-                            message: 'Invalid',
+                            message: 'Validation code is not correct',
                         })
                     }
                 } else {
                     return new ResponseWrapper({
-                        status: StatusCodes.GONE,
-                        message: 'Expired',
+                        status: StatusCodes.BAD_REQUEST,
+                        message: 'Validation code expires',
                     })
                 }
+            } else {
+                return new ResponseWrapper({
+                    status: StatusCodes.BAD_REQUEST,
+                    message: 'Email is not registered',
+                })
             }
-            return new ResponseWrapper({
-                status: StatusCodes.BAD_REQUEST,
-                message: 'Error',
-            })
+            throw new Error()
         }
         catch (err: any) {
             return new ResponseWrapper({
-                status: StatusCodes.BAD_REQUEST,
-                message: 'Error',
+                status: StatusCodes.INTERNAL_SERVER_ERROR,
+                message: 'Internal Server Error',
             })
         }
     }

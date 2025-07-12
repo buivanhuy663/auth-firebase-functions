@@ -2,11 +2,11 @@
 
 import * as fs from 'fs'
 import * as nodemailer from "nodemailer"
-import { getEmailConfigUseCase as getEmailConfigUseCase } from '../../use_case/get_email_config_use_case'
+import { getEmailConfigUseCase } from '../../use_case/get_email_config_use_case'
 
 export async function createSendEmail(emailReceive: string, authCode: string): Promise<boolean> {
     try {
-        var content = fs.readFileSync('./src/helper/email/email_send.txt', 'utf-8')
+        var content = fs.readFileSync('./src/helper/email/email_send_template.txt', 'utf-8')
         content = content.replace("::email::", emailReceive)
         content = content.replace("::auth-code::", authCode)
         const config = await getEmailConfigUseCase.run()

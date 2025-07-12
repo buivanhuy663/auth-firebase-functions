@@ -20,21 +20,21 @@ class RegisterFunction
             const password = request.body.password
 
 
-            const isExist = await emailIsExistUseCase.run(email)
             if (!Validation.isEmail(email)) {
                 return new ResponseWrapper({
-                    status: StatusCodes.OK,
+                    status: StatusCodes.BAD_REQUEST,
                     message: 'Email is invalid',
                 })
             }
 
             if (!Validation.isPassword(password)) {
                 return new ResponseWrapper({
-                    status: StatusCodes.OK,
+                    status: StatusCodes.BAD_REQUEST,
                     message: 'Password is invalid',
                 })
             }
 
+            const isExist = await emailIsExistUseCase.run(email)
             if (isExist) {
                 return new ResponseWrapper({
                     status: StatusCodes.CONFLICT,
@@ -59,8 +59,8 @@ class RegisterFunction
         }
         catch (err: any) {
             return new ResponseWrapper({
-                status: StatusCodes.BAD_REQUEST,
-                message: 'RegiSter is error',
+                status: StatusCodes.INTERNAL_SERVER_ERROR,
+                message: 'Internal Server Error',
             })
         }
     }

@@ -6,6 +6,7 @@ import { BaseFunction } from "../base/base_function";
 import { ResponseWrapper } from "../base/response_wrapper";
 import { LoginResponse } from "../models/auth/login_response";
 import { getAuthUseCase } from "../use_case/get_auth_use_case";
+import { StatusCodes } from "http-status-codes";
 
 class LoginFunction
     implements BaseFunction<ResponseWrapper<LoginResponse | undefined>> {
@@ -16,26 +17,30 @@ class LoginFunction
             const email = request.body["email"]
             const password = request.body["password"]
 
-            const data = await getAuthUseCase.run(email)
-            if (data != undefined) {
-                if (data['email'] == email && data['password'] == password) {
-                    const token = await admin.auth().createCustomToken(data.id);
+            const accountAuth = await getAuthUseCase.run(email)
+            if (accountAuth != undefined) {
+                if (accountAuth.password == email && accountAuth.password == password) {
+                    const token = await admin.auth().createCustomToken(accountAuth.id);
                     return new ResponseWrapper({
-                        status: 200,
+                        status: StatusCodes.OK,
                         message: "Login Success",
                         data: new LoginResponse({
-                            id: data['id'],
-                            email: data['email'],
+                            id: accountAuth.id,
+                            email: accountAuth.email,
                             token: token,
                         })
                     })
                 }
             }
-            throw Error()
+            return new ResponseWrapper({
+                status: StatusCodes.UNAUTHORIZED,
+                message: "Invalid Email or Password",
+                data: undefined
+            })
         } catch (e) {
             return new ResponseWrapper({
-                status: 400,
-                message: "Login fail",
+                status: StatusCodes.INTERNAL_SERVER_ERROR,
+                message: "Internal Server Error",
                 data: undefined
             })
         }

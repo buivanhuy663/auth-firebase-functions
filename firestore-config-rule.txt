@@ -1,0 +1,23 @@
+rules_version = '2';
+service cloud.firestore {    
+
+  match /databases/{database}/documents {
+  
+    // 🔒 Chỉ admin mới được truy cập collection này
+    match /accountsAuth/{docId} {
+      allow read, write: if request.auth != null && request.auth.token.role == 'admin';
+    }
+    match /accountsAuthCode/{docId} {
+      allow read, write: if request.auth != null && request.auth.token.role == 'admin';
+    }
+    match /config/{docId} {
+      allow read, write: if request.auth != null && request.auth.token.role == 'admin';
+    }
+
+
+    // 🔒 Tất cả mọi người đều được truy cập collection này
+    match /accountsInfo/{docId} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}

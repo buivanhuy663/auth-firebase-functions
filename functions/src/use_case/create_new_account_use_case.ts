@@ -8,7 +8,7 @@ class CreateNewAccountUseCase implements
     PromiseUseCase<{ email: string, password: string }, string | null> {
     async run(input: { email: string; password: string; }): Promise<string | null> {
         try {
-            const newDoc = await firestoreHelper.getNewDoc(ConstantKey.accountsInfos)
+            const newDoc = await firestoreHelper.createNewDoc(ConstantKey.accountsInfos)
             await firestoreHelper.setDocument(
                 ConstantKey.accountsAuth,
                 input.email,

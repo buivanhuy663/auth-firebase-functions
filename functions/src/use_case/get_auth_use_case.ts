@@ -1,12 +1,12 @@
-import { DocumentData } from "firebase-admin/firestore"
 import { PromiseUseCase } from "../base/use_case/promise_use_case"
 import { firestoreHelper } from "../helper/firestore_helper"
 import { ConstantKey } from "../utilities/constant_key"
+import { AccountAuth } from "../models/account_auth"
 
-class GetAuthUseCase implements PromiseUseCase<string, DocumentData | undefined> {
-    async run(input: string): Promise<DocumentData | undefined> {
+class GetAuthUseCase implements PromiseUseCase<string, AccountAuth | undefined> {
+    async run(input: string): Promise<AccountAuth | undefined> {
         const data = await firestoreHelper.getDocument(ConstantKey.accountsAuth, input)
-        return data.data()
+        return AccountAuth.fromJson(data)
     }
 }
 

@@ -19,7 +19,12 @@ import { verifyAuthCodeFunction } from "./functions/verify_auth_code_function"
 
 // Set the maximum instances to 10 for all functions
 setGlobalOptions({ maxInstances: 10 })
-admin.initializeApp()
+
+const serviceAccount = require('../admin_key/firebase-admin-key.json');
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
 // Start writing functions
 // https://firebase.google.com/docs/functions/typescript
 

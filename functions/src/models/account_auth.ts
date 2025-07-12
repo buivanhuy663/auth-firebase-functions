@@ -15,15 +15,23 @@ export class AccountAuth {
         this.password = password;
     }
 
-    id: any;
-    email: any;
-    password: any;
+    id: string;
+    email: string;
+    password: string;
 
     toJson(): any {
         return {
-            'id': this.id,
-            'email': this.email,
-            'password': this.password,
-        }
+            id: this.id,
+            email: this.email,
+            password: this.password,
+        };
+    }
+
+    static fromJson(json: any): AccountAuth {
+        return new AccountAuth({
+            id: json.id,
+            email: json.email,
+            password: json.password,
+        });
     }
 }

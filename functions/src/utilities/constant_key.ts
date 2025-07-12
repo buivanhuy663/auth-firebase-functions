@@ -2,6 +2,7 @@ export class ConstantKey {
     // to config don't delete
     static readonly config = 'config'
     static readonly docEmail = 'authEmail'
+    static readonly docAdminKey = 'adminKey'
 
     // collection auth
     static readonly accountAuthCode = 'accountsAuthCode'
