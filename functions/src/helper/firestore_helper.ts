@@ -4,28 +4,34 @@ import { DocumentData, DocumentReference, DocumentSnapshot, QuerySnapshot, Write
 class FirestoreHelper {
     constructor() { }
 
-
     getByValue = async (
         collection: string,
         child: string,
-        value: any,): Promise<QuerySnapshot<DocumentData>> => {
+        value: any,
+    ): Promise<QuerySnapshot<DocumentData>> => {
         const data = await admin.firestore().collection(collection).where(child, '==', value).get()
         return data
     }
 
     getDocument = async (
         collection: string,
-        doc: string,): Promise<DocumentSnapshot<DocumentData>> => {
+        doc: string,
+    ): Promise<DocumentSnapshot<DocumentData>> => {
         const data = await admin.firestore().collection(collection).doc(doc).get()
         return data
     }
 
-    setDocument = async (collection: string, doc: string, value: any): Promise<void> => {
+    setDocument = async (
+        collection: string,
+        doc: string, value: any,
+    ): Promise<void> => {
         await admin.firestore().collection(collection).doc(doc).set(value)
     }
 
-    addDocument = async (collection: string, value: any):
-        Promise<DocumentReference<DocumentData>> => {
+    addDocument = async (
+        collection: string,
+        value: any,
+    ): Promise<DocumentReference<DocumentData>> => {
         return await admin.firestore().collection(collection).add(value)
     }
 
@@ -33,11 +39,18 @@ class FirestoreHelper {
         return admin.firestore().collection(collection).doc()
     }
 
-    updateDoc = async (collection: string, doc: string, data: any): Promise<WriteResult> => {
+    updateDoc = async (
+        collection: string,
+        doc: string,
+        data: any,
+    ): Promise<WriteResult> => {
         return await admin.firestore().collection(collection).doc(doc).update(data)
     }
 
-    deleteDocument = async (collection: string, doc: string): Promise<WriteResult> => {
+    deleteDocument = async (
+        collection: string,
+        doc: string,
+    ): Promise<WriteResult> => {
         return await admin.firestore().collection(collection).doc(doc).delete()
     }
 }
