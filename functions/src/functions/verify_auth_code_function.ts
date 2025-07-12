@@ -7,7 +7,7 @@ import { VerifyResponse } from "../models/auth/verify_auth_response";
 import { createNewAccountUseCase } from "../use_case/create_new_account_use_case";
 import { getAuthCodeUseCase } from "../use_case/get_auth_code_use_case";
 import { resetAuthCodeUseCase } from "../use_case/reset_auth_code_use_case";
-import { timestampToNow } from "../utilities/timestamp_to_now";
+import { timestampToNow } from "../utilities/utils";
 
 
 class VerifyAuthCodeFunction implements BaseFunction<ResponseWrapper<VerifyResponse | undefined>> {
