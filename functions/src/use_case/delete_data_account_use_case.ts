@@ -2,6 +2,7 @@ import { DocumentData } from "firebase-admin/firestore"
 import { PromiseUseCase } from "../base/use_case/promise_use_case"
 import { firestoreHelper } from "../helper/firestore_helper"
 import { ConstantKey } from "../utilities/constant_key"
+import { authHelper } from "../helper/auth_helper"
 
 class DeleteDataAccountUseCase implements PromiseUseCase<string, DocumentData | void> {
     async run(input: string): Promise<DocumentData | void> {
@@ -23,6 +24,12 @@ class DeleteDataAccountUseCase implements PromiseUseCase<string, DocumentData | 
         try {
             await firestoreHelper.deleteDocument(ConstantKey.accountsAuth, input)
         } catch (error) {
+
+        }
+
+        try {
+            await authHelper.deleteUser(accountId)
+        } catch {
 
         }
     }

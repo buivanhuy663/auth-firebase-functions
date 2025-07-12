@@ -1,12 +1,12 @@
 
 import { ParamsDictionary } from "express-serve-static-core";
-import * as admin from "firebase-admin";
 import { Request } from "firebase-functions/v1";
 import { BaseFunction } from "../base/base_function";
 import { ResponseWrapper } from "../base/response_wrapper";
 import { LoginResponse } from "../models/auth/login_response";
 import { getAuthUseCase } from "../use_case/get_auth_use_case";
 import { StatusCodes } from "http-status-codes";
+import { authHelper } from "../helper/auth_helper";
 
 class LoginFunction
     implements BaseFunction<ResponseWrapper<LoginResponse | undefined>> {
@@ -20,7 +20,7 @@ class LoginFunction
             const accountAuth = await getAuthUseCase.run(email)
             if (accountAuth != undefined) {
                 if (accountAuth.email == email && accountAuth.password == password) {
-                    const token = await admin.auth().createCustomToken(accountAuth.id);
+                    const token = await authHelper.createCustomToken(accountAuth.id);
                     return new ResponseWrapper({
                         status: StatusCodes.OK,
                         message: "Login Success",
