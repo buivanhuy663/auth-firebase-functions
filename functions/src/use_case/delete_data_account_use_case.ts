@@ -8,7 +8,6 @@ class DeleteDataAccountUseCase implements PromiseUseCase<string, DocumentData | 
 
         const accountId = (await firestoreHelper.getDocument(ConstantKey.accountsAuth, input)).data()?.id
 
-
         try {
             await firestoreHelper.deleteDocument(ConstantKey.accountAuthCode, input)
         } catch (error) {

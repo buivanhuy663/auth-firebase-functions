@@ -6,7 +6,7 @@ import { AccountAuth } from "../models/account_auth"
 class GetAuthUseCase implements PromiseUseCase<string, AccountAuth | undefined> {
     async run(input: string): Promise<AccountAuth | undefined> {
         const data = await firestoreHelper.getDocument(ConstantKey.accountsAuth, input)
-        return AccountAuth.fromJson(data)
+        return AccountAuth.fromJson(data.data())
     }
 }
 

@@ -18,24 +18,30 @@ class DeleteDataAccount
             const adminKey = request.body["adminKey"]
 
             const adminKeyConfig = await getAdminKeyUseCase.run()
-            if (adminKeyConfig && adminKey === adminKeyConfig.key) {
-                await deleteDataAccountUseCase.run(email)
+            if (adminKey) {
+                if (adminKeyConfig && adminKey === adminKeyConfig['key']) {
+                    await deleteDataAccountUseCase.run(email)
+                    return new ResponseWrapper({
+                        status: StatusCodes.OK,
+                        message: "Delete Success",
+                    })
+                } else {
+                    return new ResponseWrapper({
+                        status: StatusCodes.UNAUTHORIZED,
+                        message: "Unauthorized",
+                    })
+                }
+            } else {
                 return new ResponseWrapper({
-                    status: StatusCodes.OK,
-                    message: "Delete Success",
+                    status: StatusCodes.BAD_REQUEST,
+                    message: "Admin Key is required",
                 })
             }
-
-            return new ResponseWrapper({
-                status: StatusCodes.UNAUTHORIZED,
-                message: "Unauthorized",
-            })
 
         } catch (e) {
             return new ResponseWrapper({
                 status: StatusCodes.INTERNAL_SERVER_ERROR,
                 message: "Internal Server Error",
-                data: undefined
             })
         }
     }

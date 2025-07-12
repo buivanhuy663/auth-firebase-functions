@@ -19,7 +19,7 @@ class LoginFunction
 
             const accountAuth = await getAuthUseCase.run(email)
             if (accountAuth != undefined) {
-                if (accountAuth.password == email && accountAuth.password == password) {
+                if (accountAuth.email == email && accountAuth.password == password) {
                     const token = await admin.auth().createCustomToken(accountAuth.id);
                     return new ResponseWrapper({
                         status: StatusCodes.OK,

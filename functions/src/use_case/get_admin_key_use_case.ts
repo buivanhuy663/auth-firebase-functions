@@ -5,7 +5,7 @@ import { ConstantKey } from "../utilities/constant_key"
 
 class GetAdminKeyUseCase implements PromiseOutputUseCase<DocumentData | undefined> {
     async run(): Promise<DocumentData | undefined> {
-        const data = await firestoreHelper.getDocument(ConstantKey.config, ConstantKey.docEmail)
+        const data = await firestoreHelper.getDocument(ConstantKey.config, ConstantKey.docAdminKey)
         return data.data()
     }
 }

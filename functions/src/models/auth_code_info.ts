@@ -1,4 +1,4 @@
-import {Timestamp} from "firebase-admin/firestore";
+import { DocumentData, Timestamp } from "firebase-admin/firestore";
 
 export class AuthCodeInfo {
     constructor(
@@ -8,13 +8,15 @@ export class AuthCodeInfo {
         readonly timestamp: Timestamp,
     ) { }
 
-    static fromJson(json: any) {
-
-        return new AuthCodeInfo(
-            json['email'],
-            json['password'],
-            json['authCode'],
-            json['timestamp'],
-        )
+    static fromJson(data: DocumentData | undefined) {
+        if (data)
+            return new AuthCodeInfo(
+                data['email'],
+                data['password'],
+                data['authCode'],
+                data['timestamp'],
+            )
+        else
+            return undefined
     }
 }

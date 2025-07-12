@@ -6,7 +6,7 @@ import { AuthCodeInfo } from "../models/auth_code_info"
 class GetAuthCodeUseCase implements PromiseUseCase<string, AuthCodeInfo | undefined> {
     async run(input: string): Promise<AuthCodeInfo | undefined> {
         const data = await firestoreHelper.getDocument(ConstantKey.accountAuthCode, input)
-        return AuthCodeInfo.fromJson(data)
+        return AuthCodeInfo.fromJson(data.data())
     }
 }
 
