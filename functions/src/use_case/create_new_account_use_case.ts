@@ -1,4 +1,5 @@
 import { PromiseUseCase } from "../base/use_case/promise_use_case";
+import { authHelper } from "../helper/auth_helper";
 import { firestoreHelper } from "../helper/firestore_helper";
 import { Account } from "../models/account";
 import { AccountAuth } from "../models/account_auth";
@@ -9,6 +10,10 @@ class CreateNewAccountUseCase implements
     async run(input: { email: string; password: string; }): Promise<string | null> {
         try {
             const newDoc = await firestoreHelper.createNewDoc(ConstantKey.accountsInfos)
+            await authHelper.createUser(
+                newDoc.id,
+                input.email
+            )
             await firestoreHelper.setDocument(
                 ConstantKey.accountsAuth,
                 input.email,
