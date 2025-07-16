@@ -35,7 +35,7 @@ To get started, follow these steps:
 10. Create password gmail to use SMTP or another supported transport. Add email and password to firestore with
 
 You can now test your Cloud Functions by calling them using the attached Postman file.
-![user-postman](https://github.com/buivanhuy663/auth-firebase-functions/blob/main/.github/images/user-postman.png?raw=true)
+![use-postman](https://github.com/buivanhuy663/auth-firebase-functions/blob/main/.github/images/use-postman.png?raw=true)
 
 ## Available Functions
 The following Cloud Functions are available in this repository:
