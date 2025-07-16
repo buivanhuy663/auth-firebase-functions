@@ -31,7 +31,7 @@ To get started, follow these steps:
 6. Run `firebase use --add` to add the Firebase project to your local Firebase configuration.
 7. Run `firebase emulators:start --inspect-functions` to start the Firebase emulators and enable the Cloud Functions inspect API.
 8. Run launch to go to debug in VS Code.
-9. Get admin key from `project settings->service accounts` and Add file to `functions/admin_key/firebase-admin-key.json` 
+9. Get admin key from `project settings->service accounts` and Add file to `functions/admin_key/firebase-admin-key.json` [](https://github.com/buivanhuy663/auth-firebase-functions/blob/main/.github/images/config-email.png?raw=true)
 10. Create password gmail to use SMTP or another supported transport. Add email and password to firestore with 
 11. Import the Postman file Auth-postman-collection.json to test the Cloud Functions.
 
