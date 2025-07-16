@@ -40,11 +40,11 @@ You can now test your Cloud Functions by calling them using the attached Postman
 
 ## Available Functions
 The following Cloud Functions are available in this repository:
-- `register`: Registers a new user with the Firebase Authentication service.
-- `verifyAuthCode`: Verifies an authentication code sent to a user's email address.
-- `logins`: Logs in a user with the Firebase Authentication service.
-- `changePassword`: Changes a user's password.
-- `deleteAccount`: Deletes a user's account.
+- `register`: 
+- `verifyAuthCode`: 
+- `login`:
+- `changePassword`: 
+- `deleteAccount`: 
 
 ## Tips.
 - Use file firestore-config-rule.txt to configure the Firestore rules for the Cloud Functions.
