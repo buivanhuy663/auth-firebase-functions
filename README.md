@@ -31,6 +31,9 @@ To get started, follow these steps:
 6. Run `firebase use --add` to add the Firebase project to your local Firebase configuration.
 7. Run `firebase emulators:start --inspect-functions` to start the Firebase emulators and enable the Cloud Functions inspect API.
 8. Run launch to go to debug in VS Code.
+9. Get admin key from `project settings->service accounts` and Add file to `functions/admin_key/firebase-admin-key.json` 
+10. Create password gmail to use SMTP or another supported transport. Add email and password to firestore with 
+11. Import the Postman file Auth-postman-collection.json to test the Cloud Functions.
 
 You can now test your Cloud Functions by calling them using the attached Postman file.
 
@@ -41,6 +44,9 @@ The following Cloud Functions are available in this repository:
 - `logins`: Logs in a user with the Firebase Authentication service.
 - `changePassword`: Changes a user's password.
 - `deleteAccount`: Deletes a user's account.
+
+## Tips.
+- Use file firestore-config-rule.txt to configure the Firestore rules for the Cloud Functions.
 
 ## Contributing
 Contributions are welcome! If you have any suggestions or improvements, please create a pull request or issue.
